@@ -1,0 +1,129 @@
+/* Tutorial page styles. Example output styling lives in the runner (tutorial.js). */
+:root {
+  --ink: #1d1d1b; --ink-2: #4c4b46; --muted: #7a7872; --rule: #e3e1da;
+  --paper: #fcfcfb; --paper-2: #f4f3ef; --accent: #2a78d6; --accent-ink: #1c5cab;
+  --code-bg: #f6f5f1; --py: #fff6e0; --py-rule: #e7c46a; --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.55 var(--sans); }
+a { color: var(--accent-ink); }
+code, kbd, pre { font-family: var(--mono); font-size: .9em; }
+code { background: var(--code-bg); padding: .1em .3em; border-radius: 3px; }
+pre { background: var(--code-bg); padding: .8rem 1rem; border-radius: 6px; overflow-x: auto; line-height: 1.45; }
+pre code { background: none; padding: 0; }
+h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 .5rem; letter-spacing: -.02em; }
+h2 { font-size: 1.7rem; margin: 3.5rem 0 1rem; padding-top: 1rem; border-top: 2px solid var(--ink); letter-spacing: -.01em; }
+h2 .num { color: var(--muted); font-weight: 500; margin-right: .5rem; }
+h3 { font-size: 1.2rem; margin: 2rem 0 .6rem; }
+p, ul, ol { margin: 0 0 1rem; }
+li { margin-bottom: .3rem; }
+.lede { font-size: 1.2rem; color: var(--ink-2); max-width: 44rem; }
+.meta { color: var(--muted); font-size: .95rem; }
+
+.layout { display: grid; grid-template-columns: 15rem minmax(0, 46rem); gap: 3rem; max-width: 66rem; margin: 0 auto; padding: 2.5rem 1.25rem 6rem; }
+nav.toc { position: sticky; top: 1.5rem; align-self: start; font-size: .9rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+nav.toc ol { list-style: none; padding: 0; margin: 0; }
+nav.toc li { margin: 0; }
+nav.toc a { display: block; padding: .25rem 0; color: var(--ink-2); text-decoration: none; border-left: 2px solid transparent; padding-left: .6rem; }
+nav.toc a:hover { color: var(--ink); }
+nav.toc a.active { color: var(--accent-ink); border-left-color: var(--accent); }
+nav.toc .toc-title { font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: .75rem; color: var(--muted); margin-bottom: .5rem; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  nav.toc { position: static; max-height: none; border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; }
+}
+
+table.fields { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 0 0 1.2rem; }
+table.fields th, table.fields td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.fields th { font-weight: 600; color: var(--ink-2); }
+.table-wrap { overflow-x: auto; }
+
+aside.py { background: var(--py); border-left: 4px solid var(--py-rule); padding: .8rem 1rem; margin: 1.2rem 0; border-radius: 0 6px 6px 0; font-size: .95rem; }
+aside.py::before { content: "If you know Python"; display: block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: #8a6300; margin-bottom: .3rem; }
+aside.note { background: var(--paper-2); border-left: 4px solid var(--rule); padding: .8rem 1rem; margin: 1.2rem 0; border-radius: 0 6px 6px 0; font-size: .95rem; }
+aside.note::before { content: "Note"; display: block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: .3rem; }
+.exercise { border: 1px dashed var(--muted); border-radius: 8px; padding: .8rem 1rem; margin: 1.2rem 0; font-size: .95rem; }
+.exercise::before { content: "Try it"; display: block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); margin-bottom: .3rem; }
+
+/* Runnable examples */
+figure.example { margin: 1.5rem 0 2rem; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: #fff; }
+figure.example figcaption { padding: .5rem .9rem; font-size: .85rem; font-weight: 600; color: var(--ink-2); background: var(--paper-2); border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+figure.example figcaption .mode { font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-size: .7rem; }
+figure.example textarea { display: block; width: 100%; border: 0; margin: 0; padding: .8rem 1rem; font: 13.5px/1.5 var(--mono); color: var(--ink); background: var(--code-bg); resize: vertical; tab-size: 2; white-space: pre; overflow: auto; }
+figure.example textarea:focus { outline: none; box-shadow: inset 0 0 0 2px #b7d3f6; }
+figure.example .editor .cm-editor { background: var(--code-bg); max-height: 36rem; }
+figure.example .editor .cm-editor.cm-focused { outline: none; box-shadow: inset 0 0 0 2px #b7d3f6; }
+figure.example .editor .cm-scroller { font: 13.5px/1.5 var(--mono); padding: .5rem 0; }
+figure.example .editor .cm-content { padding: 0 .4rem; caret-color: var(--ink); }
+figure.example .editor .cm-line { padding: 0 .6rem; }
+figure.example .editor .cm-activeLine { background: rgba(42,120,214,.07); }
+figure.example .editor .cm-selectionBackground, figure.example .editor .cm-focused .cm-selectionBackground { background: #cfe2f8 !important; }
+figure.example .editor .cm-matchingBracket { background: #e3dfc8; outline: 1px solid #c9c4a5; }
+figure.example .bar { display: flex; align-items: center; gap: .5rem; padding: .4rem .6rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: #fff; font-size: .8rem; color: var(--muted); }
+figure.example button { font: 600 .8rem var(--sans); padding: .3rem .7rem; border-radius: 5px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+figure.example button.run { background: var(--accent); border-color: var(--accent); color: #fff; }
+figure.example button:hover { filter: brightness(.95); }
+figure.example .bar .hint { margin-left: auto; }
+figure.example iframe { display: block; width: 100%; border: 0; background: #fff; }
+.cheatsheet td code { white-space: nowrap; }
+
+/* Additions for the marks-and-color pages */
+figure.example .bar .vision-label { font-size: .8rem; color: var(--ink-2); }
+figure.example .bar select { font: .8rem var(--sans); margin-left: .2rem; }
+pre.helpers { max-height: 28rem; font-size: 12.5px; }
+.series-nav { display: flex; gap: .5rem; flex-wrap: wrap; margin: .2rem 0 1.2rem; font-size: .9rem; }
+.series-nav a, .series-nav span { padding: .2rem .6rem; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; }
+.series-nav span { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+details.solution { border: 1px solid var(--rule); border-radius: 8px; padding: .6rem 1rem; margin: 1.2rem 0; background: #fff; }
+details.solution summary { cursor: pointer; font-weight: 600; color: var(--accent-ink); }
+.next-page { margin-top: 3rem; padding: 1rem 1.2rem; border: 2px solid var(--ink); border-radius: 8px; font-size: 1.05rem; }
+figure.example .bar .saved { font-size: .75rem; color: var(--accent-ink); }
+button.copy-pre { font: 600 .8rem var(--sans); padding: .3rem .7rem; margin: .6rem 0 -.2rem; border-radius: 5px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+
+/* Additions for the Autark tutorial: examples run in the page and share state */
+figure.example .out { padding: .8rem 1rem; min-height: 3rem; overflow-x: auto; background: #fff; font-size: 14px; line-height: 1.4; }
+figure.example .out:empty::before { content: "Press Run to see the output."; color: var(--muted); font-size: .85rem; }
+figure.example .out .status { color: var(--muted); font-size: .85rem; margin: 0 0 .4rem; }
+figure.example .out pre.err { margin: .4rem 0 0; padding: .5rem .7rem; background: #fff0ee; border-left: 3px solid #cc5260; color: #8a1f2b; white-space: pre-wrap; }
+figure.example .out pre.val { margin: .4rem 0; background: var(--code-bg); max-height: 22rem; overflow: auto; font-size: 12.5px; }
+figure.example .out table { border-collapse: collapse; font-size: 12.5px; }
+figure.example .out th, figure.example .out td { padding: .2rem .6rem; border-bottom: 1px solid var(--rule); text-align: left; white-space: nowrap; }
+figure.example .out th { color: var(--ink-2); position: sticky; top: 0; background: var(--paper-2); }
+figure.example .out .tbl { max-height: 20rem; overflow: auto; border: 1px solid var(--rule); border-radius: 6px; margin: .4rem 0; }
+figure.example .out .more { color: var(--muted); font-size: .8rem; margin: .2rem 0 0; }
+figure.example .out img { max-width: 100%; }
+figure.example .bar .state { font-size: .75rem; }
+figure.example .bar .state.ok { color: #1a7f4b; }
+figure.example .bar .state.run { color: var(--accent-ink); }
+figure.example .bar button.all { background: var(--paper); }
+figure.example .bar button:disabled { opacity: .5; cursor: default; }
+.plotgrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+aside.warn { background: #fdecec; border-left: 4px solid #cc5260; padding: .8rem 1rem; margin: 1.2rem 0; border-radius: 0 6px 6px 0; font-size: .95rem; }
+aside.warn::before { content: "Heads up"; display: block; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: #8a1f2b; margin-bottom: .3rem; }
+.fig { max-width: 100%; border: 1px solid var(--rule); border-radius: 6px; }
+.geom { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin: .6rem 0 1.2rem; }
+.geom svg { background: #fff; border: 1px solid var(--rule); border-radius: 6px; }
+.xml-node { margin-left: 1em; }
+.xml-children { margin-left: 1.5em; border-left: 1px solid #ddd; padding-left: .75em; }
+.xml-line { white-space: nowrap; }
+.xml-tag { color: #1f77b4; } .xml-attr { color: #444; } .xml-value { color: #2ca02c; } .xml-text { margin-left: 1.5em; color: #555; }
+summary.xml-line { cursor: pointer; list-style: none; }
+summary.xml-line::-webkit-details-marker { display: none; }
+summary.xml-line::before { content: "▸"; display: inline-block; width: 1em; color: #666; }
+details[open] > summary.xml-line::before { content: "▾"; }
+.xml { font: 13px/1.5 var(--mono); }
+.agenda li { margin-bottom: .5rem; }
+.authors { columns: 2; font-size: .95rem; }
+@media (max-width: 860px) { .authors { columns: 1; } }
+.pending { opacity: .6; }
+
+/* Syntax highlighting (editors and code blocks); colors follow Shiki's github-light, like the Autark gallery */
+.tok-keyword, .tok-operatorKeyword, .tok-modifier, .tok-controlKeyword, .tok-definitionKeyword { color: #d73a49; }
+.tok-string, .tok-string2, .tok-regexp { color: #032f62; }
+.tok-number, .tok-bool, .tok-null, .tok-atom, .tok-propertyName { color: #005cc5; }
+.tok-comment, .tok-lineComment, .tok-blockComment { color: #6a737d; font-style: normal; }
+.tok-variableName { color: #24292e; }
+.tok-variableName.tok-definition, .tok-function, .tok-typeName, .tok-className { color: #6f42c1; }
+.tok-operator, .tok-punctuation, .tok-bracket { color: #24292e; }
